@@ -1,4 +1,4 @@
 package org.mtfbwy.spartanapi.framework.services;
 
-public class Util {
+public class Util  {
 }
