@@ -1,6 +1,6 @@
 package org.mtfbwy.spartanapi.framework.connection;
 
-import org.mtfbwy.spartanapi.framework.services.Endpoints;
+import org.mtfbwy.spartanapi.framework.services.Endpoint;
 
 import java.io.IOException;
 import java.net.URI;
@@ -20,12 +20,12 @@ public class ConnectionManager  {
 //        return result;
 //    }
 
-    public static String getConnection(String endpoint, String key, String value) {
-        return BASEURL + endpoint + "" + "?" + key + "=" + value;
+    public static String getConnection(Endpoint endpoint, String key, String value) {
+        return BASEURL + endpoint.label + "" + "?" + key + "=" + value;
     }
 
-    public static String getConnection(String endpoint, String key, int value) {
-        return BASEURL + endpoint + "" + "?" + key + "=" + value;
+    public static String getConnection(Endpoint endpoint, String key, int value) {
+        return BASEURL + endpoint.label + "" + "?" + key + "=" + value;
     }
 
     private static HttpResponse<String> getResponse(){
