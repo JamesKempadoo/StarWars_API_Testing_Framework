@@ -1,4 +1,4 @@
-package org.mtfbwy.spartanapi.connection;
+package org.mtfbwy.spartanapi.framework.connection;
 
 public class ConnectionManager {
 }
