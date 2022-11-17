@@ -1,5 +1,7 @@
 package org.mtfbwy.spartanapi.framework.services;
 
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -12,4 +14,13 @@ public class Util  {
         }
         return false;
     }
+
+    public static ZonedDateTime stringToZDT(String string){
+        DateTimeFormatter dtf = DateTimeFormatter.ISO_DATE_TIME;
+        ZonedDateTime zdt = ZonedDateTime.parse(string,dtf);
+        return zdt;
+    }
+
+
+
 }
