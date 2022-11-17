@@ -15,17 +15,24 @@ public class ConnectionManager  {
         return BASEURL;
     }
 
-//    public static String getConnection(enum endpoint){
-//        String result = (BASEURL + endpoint.value());
-//        return result;
-//    }
-
-    public static String getConnection(Endpoint endpoint, String key, String value) {
-        return BASEURL + endpoint.label + "" + "?" + key + "=" + value;
+    public static String getConnection(Endpoints endpoint){
+        String result = (BASEURL + endpoint);
+        return result;
     }
 
-    public static String getConnection(Endpoint endpoint, String key, int value) {
-        return BASEURL + endpoint.label + "" + "?" + key + "=" + value;
+    public static String getConnection(Endpoints endpoint, String secondaryEndpoint){
+        String result = (BASEURL + endpoint + "/" + secondaryEndpoint);
+        return result;
+    }
+
+
+    public static String getConnection(Endpoints endpoint, String key, String value) {
+        return BASEURL + endpoint + "" + "?" + key + "=" + value;
+    }
+
+    public static String getConnection(Endpoints endpoint, String key, int value) {
+        return BASEURL + endpoint + "" + "?" + key + "=" + value;
+  
     }
 
     private static HttpResponse<String> getResponse(){
