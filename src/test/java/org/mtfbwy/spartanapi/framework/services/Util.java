@@ -15,12 +15,12 @@ public class Util  {
         return false;
     }
 
-    public static ZonedDateTime stringToZDT(String string){
+    public static boolean isBeforeDateNow(String string){
         DateTimeFormatter dtf = DateTimeFormatter.ISO_DATE_TIME;
         ZonedDateTime zdt = ZonedDateTime.parse(string,dtf);
-        return zdt;
+        ZonedDateTime zdtNow = ZonedDateTime.now(dtf.getZone());
+        return zdtNow.compareTo(zdt) > 0;
     }
-
-
+    
 
 }
