@@ -15,22 +15,22 @@ public class ConnectionManager  {
         return BASEURL;
     }
 
-    public static String getConnection(Endpoints endpoint){
+    public static String getConnection(Endpoint endpoint){
         String result = (BASEURL + endpoint);
         return result;
     }
 
-    public static String getConnection(Endpoints endpoint, String secondaryEndpoint){
+    public static String getConnection(Endpoint endpoint, String secondaryEndpoint){
         String result = (BASEURL + endpoint + "/" + secondaryEndpoint);
         return result;
     }
 
 
-    public static String getConnection(Endpoints endpoint, String key, String value) {
+    public static String getConnection(Endpoint endpoint, String key, String value) {
         return BASEURL + endpoint + "" + "?" + key + "=" + value;
     }
 
-    public static String getConnection(Endpoints endpoint, String key, int value) {
+    public static String getConnection(Endpoint endpoint, String key, int value) {
         return BASEURL + endpoint + "" + "?" + key + "=" + value;
   
     }

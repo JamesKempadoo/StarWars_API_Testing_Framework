@@ -1,6 +1,6 @@
 package org.mtfbwy.spartanapi.framework.services;
 
-public enum Endpoints {
+public enum Endpoint {
     PEOPLE("people"),
     FILMS("films"),
     PLANETS("planets"),
