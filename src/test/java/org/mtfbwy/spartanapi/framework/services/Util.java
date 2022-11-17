@@ -21,6 +21,11 @@ public class Util  {
         ZonedDateTime zdtNow = ZonedDateTime.now(dtf.getZone());
         return zdtNow.compareTo(zdt) > 0;
     }
-    
+
+    public static boolean capitalChecker(String string){
+        return Character.isUpperCase(string.charAt(0)) | string.equals("unknown");
+    }
+
+
 
 }
