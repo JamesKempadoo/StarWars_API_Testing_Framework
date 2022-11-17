@@ -16,22 +16,27 @@ public class ConnectionManager  {
     }
 
     public static String getConnection(Endpoint endpoint){
-        String result = (BASEURL + endpoint);
+        String result = (BASEURL + endpoint.label);
         return result;
     }
 
     public static String getConnection(Endpoint endpoint, String secondaryEndpoint){
-        String result = (BASEURL + endpoint + "/" + secondaryEndpoint);
+        String result = (BASEURL + endpoint.label + "/" + secondaryEndpoint);
+        return result;
+    }
+
+    public static String getConnection(Endpoint endpoint, int secondaryEndpoint){
+        String result = (BASEURL + endpoint.label + "/" + secondaryEndpoint);
         return result;
     }
 
 
     public static String getConnection(Endpoint endpoint, String key, String value) {
-        return BASEURL + endpoint + "" + "?" + key + "=" + value;
+        return BASEURL + endpoint.label + "" + "?" + key + "=" + value;
     }
 
     public static String getConnection(Endpoint endpoint, String key, int value) {
-        return BASEURL + endpoint + "" + "?" + key + "=" + value;
+        return BASEURL + endpoint.label + "" + "?" + key + "=" + value;
   
     }
 
