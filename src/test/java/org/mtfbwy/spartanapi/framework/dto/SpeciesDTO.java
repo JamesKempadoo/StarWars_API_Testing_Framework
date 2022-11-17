@@ -57,9 +57,15 @@ public class SpeciesDTO{
     public String getSkinColors(){
         return skinColors;
     }
+    public boolean skinColorsNotEmpty(){
+        return skinColors.length() >0;
+    }
 
     public String getHomeworld(){
         return homeworld;
+    }
+    public boolean homeWorldNotEmpty(){
+        return homeworld.length() >0;
     }
 
     public String getEdited(){
@@ -73,17 +79,37 @@ public class SpeciesDTO{
     public String getEyeColors(){
         return eyeColors;
     }
+    public boolean eyeColorsNotEmpty(){
+        return eyeColors.length() >0;
+    }
+    public String getKnownEyeColour(){
+        if (eyeColors.equals("n/a")){
+            return null;
+
+        }
+        return eyeColors;
+    }
 
     public String getLanguage(){
         return language;
+    }
+    public boolean languageNotEmpty(){
+        return language.length() >0;
     }
 
     public String getClassification(){
         return classification;
     }
+    public boolean classificationNotEmpty(){
+        return classification.length() >0;
+    }
 
     public List<String> getPeople(){
         return people;
+    }
+
+    public boolean peopleNotNull(){
+        return people != null;
     }
 
     public String getUrl(){
@@ -93,42 +119,83 @@ public class SpeciesDTO{
     public String getHairColors(){
         return hairColors;
     }
+    public boolean hairColorsNotEmpty(){
+        return hairColors.length() >0;
+    }
+    public String getKnownHairColour(){
+        if (hairColors.equals("n/a")){
+            return null;
+
+        }
+        return hairColors;
+    }
 
     public String getAverageHeight(){
+        return averageHeight;
+    }
+    public boolean AverageHeightIsPositive(){
+        return averageHeight.length() >0;
+    }
+    public String getKnownAverageHeight(){
+        if (averageHeight.equals("unknown")){
+            return null;
+
+        }
         return averageHeight;
     }
 
     public String getName(){
         return name;
     }
+    public boolean NameNotEmpty(){
+        return name.length() >0;
+    }
 
     public String getDesignation(){
         return designation;
     }
 
+    public boolean DestinationNotEmpty(){
+        return designation.length() >0;
+    }
+
+
     public String getAverageLifespan(){
+        return averageLifespan;
+    }
+    public boolean averageLifespanNotEmpty(){
+        return averageLifespan.length() >0;
+    }
+    public String getKnownAverageLifeSpan(){
+        if (averageLifespan.equals("unknown")){
+            return null;
+
+        }
         return averageLifespan;
     }
 
     @Override
      public String toString(){
-        return 
-            "SpeciesDTO{" + 
-            "films = '" + films + '\'' + 
-            ",skin_colors = '" + skinColors + '\'' + 
-            ",homeworld = '" + homeworld + '\'' + 
-            ",edited = '" + edited + '\'' + 
-            ",created = '" + created + '\'' + 
-            ",eye_colors = '" + eyeColors + '\'' + 
-            ",language = '" + language + '\'' + 
-            ",classification = '" + classification + '\'' + 
-            ",people = '" + people + '\'' + 
-            ",url = '" + url + '\'' + 
-            ",hair_colors = '" + hairColors + '\'' + 
-            ",average_height = '" + averageHeight + '\'' + 
-            ",name = '" + name + '\'' + 
-            ",designation = '" + designation + '\'' + 
-            ",average_lifespan = '" + averageLifespan + '\'' + 
+        return
+            "SpeciesDTO{" +
+            "films = '" + films + '\'' +
+            ",skin_colors = '" + skinColors + '\'' +
+            ",homeworld = '" + homeworld + '\'' +
+            ",edited = '" + edited + '\'' +
+            ",created = '" + created + '\'' +
+            ",eye_colors = '" + eyeColors + '\'' +
+            ",language = '" + language + '\'' +
+            ",classification = '" + classification + '\'' +
+            ",people = '" + people + '\'' +
+            ",url = '" + url + '\'' +
+            ",hair_colors = '" + hairColors + '\'' +
+            ",average_height = '" + averageHeight + '\'' +
+            ",name = '" + name + '\'' +
+            ",designation = '" + designation + '\'' +
+            ",average_lifespan = '" + averageLifespan + '\'' +
             "}";
         }
+
+
+
 }
