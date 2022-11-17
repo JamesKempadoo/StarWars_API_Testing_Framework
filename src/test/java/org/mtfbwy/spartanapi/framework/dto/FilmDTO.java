@@ -2,6 +2,7 @@ package org.mtfbwy.spartanapi.framework.dto;
 
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.mtfbwy.spartanapi.framework.services.Endpoint;
 
 public class FilmDTO{
 
@@ -101,6 +102,34 @@ public class FilmDTO{
 
     public String getProducer(){
         return producer;
+    }
+
+    public boolean checkIfIdExistsInList(Endpoint endpoint, int id) {
+        List<String> checkingList = findList(endpoint);
+        for (String elem:checkingList) {
+            if (elem.contains(String.valueOf(id))){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private List<String> findList(Endpoint endpoint) {
+        switch (endpoint) {
+            case PEOPLE:
+                return getCharacters();
+            case PLANETS:
+                return getPlanets();
+            case STARSHIPS:
+                return getStarships();
+            case SPECIES:
+                return getSpecies();
+            case VEHICLES:
+                return getVehicles();
+            default:
+                throw new IllegalArgumentException();
+        }
+
     }
 
     @Override
