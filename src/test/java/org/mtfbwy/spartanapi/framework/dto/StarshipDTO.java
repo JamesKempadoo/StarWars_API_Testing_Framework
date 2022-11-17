@@ -1,7 +1,9 @@
 package org.mtfbwy.spartanapi.framework.dto;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.mtfbwy.spartanapi.framework.services.Util;
 
 public class StarshipDTO{
 
@@ -154,5 +156,34 @@ public class StarshipDTO{
             ",name = '" + name + '\'' + 
             ",model = '" + model + '\'' + 
             "}";
-        }
+    }
+
+
+    //name string -- The name of this starship. The common name, such as "Death Star".
+    public boolean nameIsNotEmpty() {
+        return name.length() > 0;
+    }
+
+    // model string -- The model or official name of this starship. Such as "T-65 X-wing" or "DS-1 Orbital Battle Station".
+    public boolean modelIsNotEmpty() {
+        return model.length() > 0;
+    }
+
+    // Length of ship is more than 0
+    public boolean isShipLengthValid() {
+        return Integer.parseInt(length) > 0;
+    }
+
+    public boolean getLocalDate(String date) {
+        return Util.isBeforeDateNow(date);
+    }
+
+    public boolean isCargoCapacityValid() {
+        return Integer.parseInt(cargoCapacity) > 0;
+    }
+
+    public boolean isCrewValid() {
+        return Integer.parseInt(cargoCapacity) > 0;
+    }
+
 }
