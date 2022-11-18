@@ -73,7 +73,7 @@ public class VehiclesDTO{
         return passengers;
     }
 
-    public List<Object> getPilots(){
+    public List<String> getPilots(){
         return pilots;
     }
 
