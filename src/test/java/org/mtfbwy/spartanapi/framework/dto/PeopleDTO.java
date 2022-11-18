@@ -2,6 +2,10 @@ package org.mtfbwy.spartanapi.framework.dto;
 
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.mtfbwy.spartanapi.framework.services.Endpoint;
+import org.mtfbwy.spartanapi.framework.services.Util;
+
+import static org.mtfbwy.spartanapi.framework.services.Util.capitalChecker;
 
 public class PeopleDTO{
 
@@ -42,7 +46,7 @@ public class PeopleDTO{
     private String eyeColor;
 
     @JsonProperty("species")
-    private List<Object> species;
+    private List<String> species;
 
     @JsonProperty("starships")
     private List<String> starships;
@@ -101,7 +105,7 @@ public class PeopleDTO{
         return eyeColor;
     }
 
-    public List<Object> getSpecies(){
+    public List<String> getSpecies(){
         return species;
     }
 
@@ -139,4 +143,90 @@ public class PeopleDTO{
             ",height = '" + height + '\'' + 
             "}";
         }
+
+    public boolean isFilmsNull(){
+        return films == null;
+    }
+
+    public boolean isFilmsEmpty(){
+        return films.isEmpty();
+    }
+
+    public boolean isFilmsLinkFormat() {
+        if (films.isEmpty()){
+            return true;
+        }
+        if (Util.linkChecker(films, Endpoint.FILMS)) return false;
+        return true;
+    }
+
+    public boolean isNameCapitalized(){
+        return capitalChecker(name);
+    }
+    public boolean isNameNull(){
+        return name == null;
+    }
+
+    public boolean isNameEmpty(){
+        return name.isEmpty();
+    }
+
+    public boolean checkIfIdExistsInList(Endpoint endpoint, int id) {
+        List<String> checkingList = findList(endpoint);
+        for (String elem:checkingList) {
+            if (elem.contains(String.valueOf(id))){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private List<String> findList(Endpoint endpoint) {
+        switch (endpoint) {
+            case SPECIES:
+                return getSpecies();
+            case FILMS:
+                return getFilms();
+            case VEHICLES:
+                return getVehicles();
+            case STARSHIPS:
+                return getStarships();
+            default:
+                throw new IllegalArgumentException();
+        }
+    }
+
+    public Integer getHeightAsInteger(){
+        if (isHeightNull()){
+            return null;
+        }
+        return Integer.parseInt(height);
+    }
+
+    public boolean isHeightNull(){
+        return height == null;
+    }
+
+    public boolean isHeightEmpty(){
+        return height.isEmpty();
+    }
+
+    public Integer getMassAsInteger(){
+        if (isMassNull()){
+            return null;
+        }
+        return Integer.parseInt(mass);
+    }
+
+    public boolean isMassNull(){
+        return mass == null;
+    }
+
+    public boolean isMassEmpty(){
+        return mass.isEmpty();
+    }
+
+
+
+
 }
