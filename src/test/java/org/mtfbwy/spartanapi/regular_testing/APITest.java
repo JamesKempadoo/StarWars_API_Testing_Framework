@@ -19,8 +19,6 @@ public class APITest {
 
     // Init
 
-    private static final HttpClient client = HttpClient.newHttpClient();
-
     private static HttpResponse<String> response;
 
     private static final ObjectMapper mapper = new ObjectMapper();
@@ -34,14 +32,17 @@ public class APITest {
 
         try {
 
+            HttpClient client = HttpClient.newHttpClient();
+
             // Make Http Request and expose headers
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(new URI("https://www.swapi.dev/api/people/1"))
+                    .uri(new URI("https://swapi.dev/api/people/1"))
                     .build();
+
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
             // Map response body to Json Node
-            node = mapper.readTree(new URL("https://www.swapi.dev/api/people/1"));
+            node = mapper.readTree(new URL("https://swapi.dev/api/people/1"));
 
         } catch(URISyntaxException | IOException | InterruptedException e) {
             throw new RuntimeException(e);
@@ -76,15 +77,6 @@ public class APITest {
     @DisplayName("Printing the response body")
     void testForTheResponseBody() {
         System.out.println(response.body());
-    }
-
-    @Test
-    @DisplayName("Test Participants is a positive integer")
-    void testParticipantsIsPositiveInteger() {
-
-        int participants = node.get("participants").asInt();
-
-        Assertions.assertTrue(participants >= 0);
     }
 
     @Test
