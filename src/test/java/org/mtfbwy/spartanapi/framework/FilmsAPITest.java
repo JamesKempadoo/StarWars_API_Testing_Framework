@@ -1,6 +1,5 @@
 package org.mtfbwy.spartanapi.framework;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -10,33 +9,21 @@ import org.mtfbwy.spartanapi.framework.dto.FilmsRepository;
 import org.mtfbwy.spartanapi.framework.injection.Injector;
 import org.mtfbwy.spartanapi.framework.services.Endpoint;
 
-import java.io.IOException;
-import java.net.URL;
-
 public class FilmsAPITest {
 
     static FilmDTO dto;
-
     static FilmsRepository dtoRepo;
     static int status;
-
-    static ObjectMapper mapper = new ObjectMapper();
+    static String urlEndPointDTO = ConnectionManager.getConnection(Endpoint.FILMS, 6);
+    static String urlEndPointRepo = ConnectionManager.getConnection(Endpoint.FILMS);
 
     @BeforeAll
     static void initSetup() {
 
-        status = ConnectionManager.getStatusCode(ConnectionManager.getConnection(Endpoint.FILMS, 1));
-
-        if ( status == 200 ) {
-            dto = Injector.injectFilmDTO(ConnectionManager.getConnection(Endpoint.FILMS, 1));
-        }
+        dto = Injector.injectFilmDTO(urlEndPointDTO);
+        status = ConnectionManager.getStatusCode(urlEndPointDTO);
         System.out.println(status);
-
-        try {
-            dtoRepo = mapper.readValue(new URL(ConnectionManager.getConnection(Endpoint.FILMS)), FilmsRepository.class);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        dtoRepo = Injector.injectFilmRepository(urlEndPointRepo);
     }
 
     @Test

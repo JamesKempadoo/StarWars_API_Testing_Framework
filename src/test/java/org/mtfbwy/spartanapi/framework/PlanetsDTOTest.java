@@ -1,41 +1,31 @@
 package org.mtfbwy.spartanapi.framework;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mtfbwy.spartanapi.framework.connection.ConnectionManager;
 import org.mtfbwy.spartanapi.framework.dto.PlanetsDTO;
-import org.mtfbwy.spartanapi.framework.dto.VehiclesDTO;
-import org.mtfbwy.spartanapi.framework.dto.VehiclesRepository;
+import org.mtfbwy.spartanapi.framework.dto.PlanetsRepository;
 import org.mtfbwy.spartanapi.framework.injection.Injector;
 import org.mtfbwy.spartanapi.framework.services.Endpoint;
 
-import java.io.IOException;
-import java.net.URL;
 
 public class PlanetsDTOTest {
 
     static PlanetsDTO dto;
-
-    static VehiclesRepository dtoRepo;
+    static PlanetsRepository dtoRepo;
     static int status;
-
-    static ObjectMapper mapper = new ObjectMapper();
+    static String urlEndPointDTO = ConnectionManager.getConnection(Endpoint.PLANETS, 6);
+    static String urlEndPointRepo = ConnectionManager.getConnection(Endpoint.PLANETS);
 
     @BeforeAll
     static void initSetup() {
-        String path = ConnectionManager.getConnection(Endpoint.PLANETS, 6);
-        dto = Injector.injectPlanetsDTO(path);
-        status = ConnectionManager.getStatusCode(path);
-        System.out.println(status);
 
-        try {
-            dtoRepo = mapper.readValue(new URL(ConnectionManager.getConnection(Endpoint.VEHICLES)), VehiclesRepository.class);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        dto = Injector.injectPlanetsDTO(urlEndPointDTO);
+        status = ConnectionManager.getStatusCode(urlEndPointDTO);
+        System.out.println(status);
+        dtoRepo = Injector.injectPlanetRepository(urlEndPointRepo);
     }
 
     @Test

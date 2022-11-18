@@ -16,26 +16,23 @@ import java.net.URL;
 
 
 public class SpeciesAPITest {
-    static SpeciesDTO dto;
 
+    static SpeciesDTO dto;
     static SpeciesRepository dtoRepo;
     static int status;
+    static String urlEndPointDTO = ConnectionManager.getConnection(Endpoint.SPECIES, 1);
+    static String urlEndPointRepo = ConnectionManager.getConnection(Endpoint.SPECIES);
 
-    static ObjectMapper mapper = new ObjectMapper();
 
 
     @BeforeAll
     static void initSetup() {
 
-        dto = Injector.injectSpeciesDTO(ConnectionManager.getConnection(Endpoint.SPECIES, 1));
-        status = ConnectionManager.getStatusCode();
+        dto = Injector.injectSpeciesDTO(urlEndPointDTO);
+        status = ConnectionManager.getStatusCode(urlEndPointDTO);
         System.out.println(status);
+        dtoRepo = Injector.injectSpeciesRepository(urlEndPointRepo);
 
-        try {
-            dtoRepo = mapper.readValue(new URL(ConnectionManager.getConnection(Endpoint.SPECIES)), SpeciesRepository.class);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     @Test
