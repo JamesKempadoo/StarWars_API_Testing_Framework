@@ -19,24 +19,18 @@ import java.net.URL;
 public class VehiclesDTOTest {
 
     static VehiclesDTO dto;
-
     static VehiclesRepository dtoRepo;
     static int status;
-
-    static ObjectMapper mapper = new ObjectMapper();
+    static String urlEndPointDTO = ConnectionManager.getConnection(Endpoint.VEHICLES, 6);
+    static String urlEndPointRepo = ConnectionManager.getConnection(Endpoint.VEHICLES);
 
     @BeforeAll
     static void initSetup() {
 
-        dto = Injector.injectVehiclesDTO(ConnectionManager.getConnection(Endpoint.VEHICLES, 6));
-        status = ConnectionManager.getStatusCode(ConnectionManager.getConnection(Endpoint.VEHICLES, 6));
+        dto = Injector.injectVehiclesDTO(urlEndPointDTO);
+        status = ConnectionManager.getStatusCode(urlEndPointDTO);
         System.out.println(status);
-
-//        try {
-//            dtoRepo = mapper.readValue(new URL(ConnectionManager.getConnection(Endpoint.VEHICLES)), VehiclesRepository.class);
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
+        dtoRepo = Injector.injectVehiclesRepository(urlEndPointRepo);
     }
 
     @Test
