@@ -40,11 +40,11 @@ public class ConnectionManager  {
   
     }
 
-    private static HttpResponse<String> getResponse(){
+    private static HttpResponse<String> getResponse(String path){
         var client = HttpClient.newHttpClient();
         var request = HttpRequest
                 .newBuilder()
-                .uri(URI.create(BASEURL))
+                .uri(URI.create(path))
                 .build();
         HttpResponse<String> response = null;
 
@@ -56,13 +56,13 @@ public class ConnectionManager  {
         return response;
     }
 
-    public static int getStatusCode(){
-        return getResponse().statusCode();
+    public static int getStatusCode(String path){
+        return getResponse(path).statusCode();
     }
 
-    public static String getHeader(String key){
+    public static String getHeader(String path, String key){
 
-        return getResponse()
+        return getResponse(path)
                 .headers()
                 .firstValue(key)
                 .orElse("Key Not Found");
