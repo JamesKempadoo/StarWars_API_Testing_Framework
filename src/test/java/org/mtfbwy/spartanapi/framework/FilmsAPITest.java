@@ -33,7 +33,6 @@ public class FilmsAPITest {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
     }
 
     @Test

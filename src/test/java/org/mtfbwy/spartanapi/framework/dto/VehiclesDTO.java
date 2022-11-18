@@ -2,6 +2,10 @@ package org.mtfbwy.spartanapi.framework.dto;
 
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.mtfbwy.spartanapi.framework.services.Endpoint;
+import org.mtfbwy.spartanapi.framework.services.Util;
+
+import static org.mtfbwy.spartanapi.framework.services.Util.capitalChecker;
 
 public class VehiclesDTO{
 
@@ -18,7 +22,7 @@ public class VehiclesDTO{
     private String passengers;
 
     @JsonProperty("pilots")
-    private List<Object> pilots;
+    private List<String> pilots;
 
     @JsonProperty("edited")
     private String edited;
@@ -116,6 +120,165 @@ public class VehiclesDTO{
     public String getModel(){
         return model;
     }
+
+    //Additional Methods
+
+    public boolean isNameCapitalized(){
+        return capitalChecker(name);
+    }
+    public boolean isNameNull(){
+        return name == null;
+    }
+
+    public boolean isNameEmpty(){
+        return name.isEmpty();
+    }
+
+    public boolean isModelCapitalized(){
+        return capitalChecker(model);
+    }
+    public boolean isModelNull(){
+        return model == null;
+    }
+
+    public boolean isModelEmpty(){
+        return model.isEmpty();
+    }
+
+    public boolean isManufacturerCapitalized(){
+        return capitalChecker(manufacturer);
+    }
+    public boolean isManufacturerNull(){
+        return manufacturer == null;
+    }
+
+    public boolean isManufacturerEmpty(){
+        return manufacturer.isEmpty();
+    }
+
+
+    public Integer getCostInCreditsAsInteger(){
+        if (costInCredits == null){
+            return null;
+        }
+
+        return Integer.parseInt(costInCredits);
+    }
+    public boolean isCostInCreditsNull(){
+        return costInCredits == null;
+    }
+
+    public boolean isCostInCreditsEmpty(){
+        return costInCredits.isEmpty();
+    }
+
+    public Float getLengthAsFloat(){
+        if (length == null){
+            return null;
+        }
+
+        return Float.parseFloat(length);
+    }
+    public boolean isLengthNull(){
+        return length == null;
+    }
+
+    public boolean isLengthEmpty(){
+        return length.isEmpty();
+    }
+
+    public Integer getMaxAtmospheringSpeedAsInteger(){
+        if (maxAtmospheringSpeed == null){
+            return null;
+        }
+
+        return Integer.parseInt(maxAtmospheringSpeed);
+    }
+    public boolean isMaxAtmospheringSpeedNull(){
+        return maxAtmospheringSpeed == null;
+    }
+
+    public boolean isMaxAtmospheringSpeedEmpty(){
+        return maxAtmospheringSpeed.isEmpty();
+    }
+
+    public Integer getCrewAsInteger(){
+        if (crew == null){
+            return null;
+        }
+
+        return Integer.parseInt(crew);
+    }
+    public boolean isCrewNull(){
+        return crew == null;
+    }
+
+    public boolean isCrewEmpty(){
+        return crew.isEmpty();
+    }
+
+    public Integer getPassengersAsInteger(){
+        if (passengers == null){
+            return null;
+        }
+
+        return Integer.parseInt(passengers);
+    }
+    public boolean isPassengersNull(){
+        return passengers == null;
+    }
+
+    public boolean isPassengersEmpty(){
+        return passengers.isEmpty();
+    }
+
+    public boolean isConsumablesNull(){
+        return consumables == null;
+    }
+
+    public boolean isConsumablesEmpty(){
+        return consumables.isEmpty();
+    }
+
+    public boolean isVehicleClassNull(){
+        return vehicleClass == null;
+    }
+
+    public boolean isVehiclesClassEmpty(){
+        return vehicleClass.isEmpty();
+    }
+
+    public boolean isPilotsNull(){
+        return pilots == null;
+    }
+
+    public boolean isPilotsEmpty(){
+        return pilots.isEmpty();
+    }
+
+    public boolean isPilotsLinkFormatCorrect(){
+        if (isFilmsEmpty() & isFilmsNull()){
+            Util.linkChecker(pilots, Endpoint.PEOPLE);
+        }
+        return false;
+    }
+
+    public boolean isFilmsNull(){
+        return films == null;
+    }
+
+    public boolean isFilmsEmpty(){
+        return films.isEmpty();
+    }
+
+    public boolean isFilmLinkFormatCorrect(){
+        if (isFilmsEmpty() & isFilmsNull()){
+                Util.linkChecker(films, Endpoint.FILMS);
+        }
+        return false;
+    }
+
+
 
     @Override
      public String toString(){
