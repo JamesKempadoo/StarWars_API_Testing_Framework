@@ -60,6 +60,11 @@ public class ConnectionManager  {
         return getResponse(path).statusCode();
     }
 
+    // Return Status Code of BASE URL ONLY
+    public static int getBaseURLStatusCode() {
+        return getStatusCode(BASEURL);
+    }
+
     public static String getHeader(String path, String key){
 
         return getResponse(path)
