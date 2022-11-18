@@ -1,9 +1,6 @@
 package org.mtfbwy.spartanapi.framework;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.mtfbwy.spartanapi.framework.connection.ConnectionManager;
 import org.mtfbwy.spartanapi.framework.dto.PlanetsDTO;
 import org.mtfbwy.spartanapi.framework.dto.PlanetsRepository;
@@ -62,5 +59,16 @@ public class PlanetsDTOTest {
     @DisplayName("Check if gravity value/'s are Bigger 0")
     void checkIfGravityValueSAreBigger0(){
         Assertions.assertFalse(dto.isGravityValuesSmaller0());
+    }
+
+
+    @Nested
+    class PlanetsRepositoryTests {
+
+        @Test
+        @DisplayName("Testing the count of results equals the length of results array")
+        void testCountOfResults() {
+            Assertions.assertTrue(dtoRepo.checkResultsCountIsValid());
+        }
     }
 }
