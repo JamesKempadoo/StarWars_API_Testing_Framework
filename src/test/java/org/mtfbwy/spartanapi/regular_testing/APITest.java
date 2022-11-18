@@ -23,7 +23,7 @@ public class APITest {
 
     private static final ObjectMapper mapper = new ObjectMapper();
 
-    private final List<String> validGenders = new ArrayList<>(List.of(new String[]{"Male", "Female", "unknown", "n/a"}));
+    private final ArrayList<String> validGenders = new ArrayList<>(List.of(new String[]{"male", "female", "unknown", "n/a"}));
 
     private static JsonNode node;
 
@@ -85,7 +85,7 @@ public class APITest {
 
         String gender = node.get("gender").asText();
 
-        Assertions.assertTrue(validGenders.contains(gender));
+        Assertions.assertTrue(validGenders.contains(gender.toLowerCase()));
     }
 
     // Key
@@ -111,6 +111,8 @@ public class APITest {
     @Test
     @DisplayName("Testing the Eye Colour Length is Valid")
     void testEyeColourIsValid() {
+
+        Assumptions.assumeFalse(node.get("eye_colour") == null);
 
         String eyeColour = node.get("eye_colour").asText();
         Assertions.assertTrue(eyeColour.length() > 0);
