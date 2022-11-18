@@ -1,8 +1,10 @@
 package org.mtfbwy.spartanapi.framework.dto;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.mtfbwy.spartanapi.framework.services.Endpoint;
 import org.mtfbwy.spartanapi.framework.services.Util;
 
 public class StarshipDTO{
@@ -179,11 +181,18 @@ public class StarshipDTO{
     }
 
     public boolean isCargoCapacityValid() {
-        return Integer.parseInt(cargoCapacity) > 0;
+        return Long.parseLong(cargoCapacity) > 0;
     }
 
     public boolean isCrewValid() {
-        return Integer.parseInt(cargoCapacity) > 0;
+        return Integer.parseInt(crew.replaceAll(",","")) > 0;
     }
+
+    public boolean isUrlAccurate(){
+        List<String> list = new ArrayList<>();
+        list.add(url);
+        return Util.linkChecker(list, Endpoint.PLANETS);
+    }
+
 
 }
