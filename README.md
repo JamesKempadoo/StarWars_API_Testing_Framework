@@ -44,6 +44,6 @@ The testing framework is split into the following packages: <br>
 The framework was developed to help testers focus on developing test cases instead of worrying how to get the appropriate
 response from the Star Wars API. Therefore, to use the testing framework a tester should follow the steps below:
 * Create a new Test class
-* Get the url of his/her interest, by using the methods in the `ConnectionManager` class
+* Get the url of your interest, by using the methods in the `ConnectionManager` class
 * Inject the JSON response into the appropriate dto by using the methods in the `Injector` class
 * Start developing test cases by calling the several helper methods inside the dto.
