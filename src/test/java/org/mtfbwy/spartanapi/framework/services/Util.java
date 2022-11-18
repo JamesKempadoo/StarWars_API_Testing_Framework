@@ -26,6 +26,4 @@ public class Util  {
         return Character.isUpperCase(string.charAt(0)) | string.equals("unknown");
     }
 
-
-
 }
