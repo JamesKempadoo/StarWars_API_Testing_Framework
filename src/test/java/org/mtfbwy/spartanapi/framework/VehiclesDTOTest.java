@@ -29,7 +29,7 @@ public class VehiclesDTOTest {
     static void initSetup() {
 
         dto = Injector.injectVehiclesDTO(ConnectionManager.getConnection(Endpoint.VEHICLES, 6));
-        status = ConnectionManager.getStatusCode();
+        status = ConnectionManager.getStatusCode(ConnectionManager.getConnection(Endpoint.VEHICLES, 6));
         System.out.println(status);
 
 //        try {
