@@ -16,18 +16,15 @@ public class ConnectionManager  {
     }
 
     public static String getConnection(Endpoint endpoint){
-        String result = (BASEURL + endpoint.label);
-        return result;
+        return BASEURL + endpoint.label;
     }
 
     public static String getConnection(Endpoint endpoint, String secondaryEndpoint){
-        String result = (BASEURL + endpoint.label + "/" + secondaryEndpoint);
-        return result;
+        return BASEURL + endpoint.label + "/" + secondaryEndpoint;
     }
 
     public static String getConnection(Endpoint endpoint, int secondaryEndpoint){
-        String result = (BASEURL + endpoint.label + "/" + secondaryEndpoint);
-        return result;
+        return BASEURL + endpoint.label + "/" + secondaryEndpoint;
     }
 
 
@@ -38,6 +35,10 @@ public class ConnectionManager  {
     public static String getConnection(Endpoint endpoint, String key, int value) {
         return BASEURL + endpoint.label + "" + "?" + key + "=" + value;
   
+    }
+
+    public static String getConnectionAndSearchForValue(Endpoint endpoint, String value) {
+        return getConnection(endpoint, "search", value);
     }
 
     private static HttpResponse<String> getResponse(String path){
