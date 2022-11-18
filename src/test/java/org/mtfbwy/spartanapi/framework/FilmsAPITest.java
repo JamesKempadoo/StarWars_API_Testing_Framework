@@ -1,6 +1,7 @@
 package org.mtfbwy.spartanapi.framework;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mtfbwy.spartanapi.framework.connection.ConnectionManager;
@@ -45,7 +46,7 @@ public class FilmsAPITest {
         System.out.println(dtoRepo);
 
         // Checking that actor exists in PEOPLE endpoint
-        //Assertions.assertTrue(dto.checkIfIdExistsInList(Endpoint.PEOPLE, 1));
+        Assertions.assertTrue(dto.checkIfIdExistsInList(Endpoint.PEOPLE, 1));
 
 
     }

@@ -123,6 +123,28 @@ public class VehiclesDTO{
 
     //Additional Methods
 
+    public boolean checkIfIdExistsInList(Endpoint endpoint, int id) {
+        List<String> checkingList = findList(endpoint);
+        for (String elem:checkingList) {
+            if (elem.contains(String.valueOf(id))){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private List<String> findList(Endpoint endpoint) {
+        switch (endpoint) {
+            case PEOPLE:
+                return getPilots();
+            case FILMS:
+                return getFilms();
+            default:
+                throw new IllegalArgumentException();
+        }
+
+    }
+
     public boolean isNameCapitalized(){
         return capitalChecker(name);
     }
