@@ -1,7 +1,10 @@
 package org.mtfbwy.spartanapi.framework.dto;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class StarshipsRepository{
 
@@ -42,5 +45,33 @@ public class StarshipsRepository{
             ",count = '" + count + '\'' + 
             ",results = '" + results + '\'' + 
             "}";
+    }
+
+    public boolean checkResultsCountIsValid() {
+
+        String nextLink = next;
+        int expectedCount = count;
+
+        if ( nextLink == null ) {
+            return expectedCount == results.size();
         }
+
+        // Visit each link and accumulate the results length, check against count
+        int resultsCount = results.size();
+
+        while( nextLink != null ) {
+
+            ObjectMapper objectMapper = new ObjectMapper();
+
+            StarshipsRepository dto = null;
+            try {
+                dto = objectMapper.readValue(new URL(nextLink), StarshipsRepository.class);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            resultsCount += dto.results.size();
+            nextLink = dto.next;
+        }
+        return expectedCount == resultsCount;
+    }
 }

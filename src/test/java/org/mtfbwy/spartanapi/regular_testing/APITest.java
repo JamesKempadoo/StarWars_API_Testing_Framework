@@ -17,14 +17,9 @@ import java.util.List;
 
 public class APITest {
 
-    // Init
-
     private static HttpResponse<String> response;
-
     private static final ObjectMapper mapper = new ObjectMapper();
-
     private final ArrayList<String> validGenders = new ArrayList<>(List.of(new String[]{"male", "female", "unknown", "n/a"}));
-
     private static JsonNode node;
 
     @BeforeAll
