@@ -24,8 +24,11 @@ public class FilmsAPITest {
     @BeforeAll
     static void initSetup() {
 
-        dto = Injector.injectFilmDTO(ConnectionManager.getConnection(Endpoint.FILMS, 1));
-        status = ConnectionManager.getStatusCode();
+        status = ConnectionManager.getStatusCode(ConnectionManager.getConnection(Endpoint.FILMS, 1));
+
+        if ( status == 200 ) {
+            dto = Injector.injectFilmDTO(ConnectionManager.getConnection(Endpoint.FILMS, 1));
+        }
         System.out.println(status);
 
         try {
